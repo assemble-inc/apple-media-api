@@ -1,8 +1,6 @@
 require 'apple/base'
 
 module Apple
-  module Music
-    class Chart < Apple::Base
-    end
+  class Chart < Apple::Base
   end
 end

@@ -2,14 +2,13 @@ require 'jwt'
 require 'apple/api'
 
 module Apple
-  class Client
+  module Client
     include Apple::API
 
     attr_reader :token
 
-    def initialize(storefront: nil, realm: nil)
+    def initialize(storefront: nil)
       set_storefront(storefront || 'us')
-      set_realm(realm || 'music')
       generate_token
     end
 
@@ -27,14 +26,6 @@ module Apple
 
     def get_storefront
       @storefront
-    end
-
-    def set_realm(new_realm)
-      @realm = new_realm
-    end
-
-    def get_realm
-      @realm
     end
 
     protected

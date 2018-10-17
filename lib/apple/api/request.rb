@@ -7,7 +7,7 @@ module Apple
   module API
     class Request
       def initialize(client, request_method, path, options = {})
-        @base_url = "https://api.#{client.get_realm}.apple.com"
+        @base_url = client.url
         @client = client
         @uri = URI.parse(path.start_with?('http') ? path : @base_url + path)
         @request_method = request_method
