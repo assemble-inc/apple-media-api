@@ -15,6 +15,7 @@ require 'apple/music/music_video'
 require 'apple/music/playlist'
 require 'apple/music/song'
 require 'apple/music/station'
+require 'apple/music/client'
 
 module Apple
   class << self
