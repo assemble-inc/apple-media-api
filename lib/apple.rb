@@ -16,6 +16,12 @@ require 'apple/music/playlist'
 require 'apple/music/song'
 require 'apple/music/station'
 
+require 'apple/books/audio_book'
+require 'apple/books/author'
+require 'apple/books/book_series'
+require 'apple/books/book'
+require 'apple/books/genre'
+
 module Apple
   class << self
     attr_writer :configuration
