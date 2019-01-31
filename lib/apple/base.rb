@@ -1,7 +1,8 @@
 module Apple
   class Base
-    attr_reader :id, :attributes, :obj_hash, :href, :type, :relationships, :meta, :query_options, :client
+    attr_reader :id, :obj_hash, :attributes, :href, :type, :relationships, :meta, :query_options, :client
     alias attrs attributes
+    alias to_h obj_hash
     alias to_hash to_h
 
     def initialize(obj_hash = {}, query_options = {}, client = nil)
@@ -24,10 +25,6 @@ module Apple
       @meta = obj_hash[:meta]
 
       @requeried = false
-    end
-
-    def to_h
-      @obj_hash
     end
 
     def requery(options = {})
