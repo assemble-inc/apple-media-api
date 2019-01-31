@@ -2,7 +2,6 @@ require 'apple/music/api/activities'
 require 'apple/music/api/albums'
 require 'apple/music/api/apple_curators'
 require 'apple/music/api/artists'
-require 'apple/music/api/charts'
 require 'apple/music/api/curators'
 require 'apple/music/api/genres'
 require 'apple/music/api/music_videos'
@@ -18,7 +17,6 @@ module Apple
         include Apple::Music::API::Albums
         include Apple::Music::API::AppleCurators
         include Apple::Music::API::Artists
-        include Apple::Music::API::Charts
         include Apple::Music::API::Curators
         include Apple::Music::API::Genres
         include Apple::Music::API::MusicVideos

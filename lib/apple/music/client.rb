@@ -10,6 +10,10 @@ module Apple
       def url
         "https://api.music.apple.com/".freeze
       end
+
+      def base_class
+        Apple::Music
+      end
     end
   end
 end

@@ -23,6 +23,15 @@ module Apple
           klass.new(item, options, self)
         end
       end
+
+      def get_class(type)
+        base_class.const_get(type.to_s.underscore.camelcase.singularize)
+      end
+
+      def generate_objects(type, data)
+        klass = get_class(type)
+        data.map { |adam| klass.new(adam) }
+      end
     end
   end
 end

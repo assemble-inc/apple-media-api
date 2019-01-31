@@ -10,9 +10,9 @@ module Apple
       object_attr_reader :Artwork, :artwork
       object_relation_reader :Tracks, :tracks
       object_relation_reader :Artists, :artists
-      
+
       resource_attr_reader :name, :url, :artist_name
-      
+
       def formatted
         data = {
           name: name,
@@ -23,14 +23,14 @@ module Apple
           artwork_url: raw_artwork_url,
           tracks: tracks.map(&:formatted)
         }
-        
+
         data
       end
-      
+
       def description
         attributes[:editorialNotes] ? (attributes[:editorialNotes][:standard] || attributes[:editorialNotes][:short]) : ""
       end
-      
+
       def description_short
         attributes[:editorialNotes] ? (attributes[:editorialNotes][:short] || "") : ""
       end
@@ -38,7 +38,7 @@ module Apple
       def raw_artwork_url
         attributes[:artwork][:url].sub(/http:\/\/(.+?)\./, 'https://\1-ssl.')
       end
-      
+
     end
   end
 end

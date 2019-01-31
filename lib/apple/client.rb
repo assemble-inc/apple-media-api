@@ -28,6 +28,10 @@ module Apple
       @storefront
     end
 
+    def base_class
+      Apple
+    end
+
     protected
 
     def header_fields
