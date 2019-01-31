@@ -1,27 +1,33 @@
 module Apple
   class Base
-    attr_reader :id, :attributes, :href, :type, :relationships, :meta, :query_options, :client
+    attr_reader :id, :attributes, :obj_hash, :href, :type, :relationships, :meta, :query_options, :client
     alias attrs attributes
-    alias to_h attrs
     alias to_hash to_h
 
     def initialize(obj_hash = {}, query_options = {}, client = nil)
       # raise error if id is missing
+      @obj_hash = obj_hash
       @id = obj_hash.fetch(:id)
       @type = obj_hash[:type]
       @href = obj_hash[:href]
       @attributes = obj_hash[:attributes] || {}
       @relationships = obj_hash[:relationships] || {}
 
+
+
       @object_readers = []
 
       @client = client
       @query_options = query_options
-      
+
       # in docs but havent seen yet
       @meta = obj_hash[:meta]
 
       @requeried = false
+    end
+
+    def to_h
+      @obj_hash
     end
 
     def requery(options = {})
@@ -30,6 +36,8 @@ module Apple
       result = @client.perform_get(@href, @query_options)
 
       obj_hash = result[:data].first
+
+      @obj_hash = obj_hash
 
       @attributes = obj_hash[:attributes] || {}
       @relationships = obj_hash[:relationships] || {}
