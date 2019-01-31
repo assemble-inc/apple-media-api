@@ -1,6 +1,6 @@
 # Apple Media API
 
-Apple Media acts as an abstraction for interacting with Apple's Music and Books API.
+Apple Media acts as an abstraction for interacting with Apple's Music API
 
 ## Installation
 
