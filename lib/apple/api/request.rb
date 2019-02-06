@@ -89,14 +89,14 @@ module Apple
           }.join('&')
         when Hash
           value.map { |k, v|
-            build_nested_query(v, prefix ? "#{prefix}[#{escape(k)}]" : escape(k))
+            build_nested_query(v, prefix ? "#{prefix}[#{URI.encode_www_form_component(k)}]" : URI.encode_www_form_component(k))
           }.reject(&:empty?).join('&')
         when nil
           prefix
         else
           raise ArgumentError, 'value must be a Hash' if prefix.nil?
 
-          "#{prefix}=#{escape(value)}"
+          "#{prefix}=#{URI.encode_www_form_component(value)}"
         end
       end
 
