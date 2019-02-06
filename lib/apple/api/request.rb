@@ -28,7 +28,7 @@ module Apple
       end
 
       def perform_get
-        @uri.query = Rack::Utils.build_nested_query(clean_options)
+        @uri.query = build_nested_query(clean_options)
 
         request = Net::HTTP::Get.new(@uri)
         request['Authorization'] = "Bearer #{@client.token}"
@@ -78,6 +78,26 @@ module Apple
           end
         end
         object
+      end
+
+      # From Rack::Utils.build_nested_query
+      def build_nested_query(value, prefix = nil)
+        case value
+        when Array
+          value.map { |v|
+            build_nested_query(v, "#{prefix}[]")
+          }.join('&')
+        when Hash
+          value.map { |k, v|
+            build_nested_query(v, prefix ? "#{prefix}[#{escape(k)}]" : escape(k))
+          }.reject(&:empty?).join('&')
+        when nil
+          prefix
+        else
+          raise ArgumentError, 'value must be a Hash' if prefix.nil?
+
+          "#{prefix}=#{escape(value)}"
+        end
       end
 
     end

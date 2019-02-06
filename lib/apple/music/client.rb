@@ -14,6 +14,20 @@ module Apple
       def base_class
         Apple::Music
       end
+
+      def find_types
+        {
+          albums: :album,
+          'music-videos': :music_video,
+          playlists: :playlist,
+          songs: :song,
+          stations: :station,
+          artists: :artist,
+          curators: :curator,
+          activities: :activity,
+          'apple-curators': :apple_curator
+        }.freeze
+      end
     end
   end
 end
