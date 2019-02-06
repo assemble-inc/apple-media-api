@@ -13,6 +13,8 @@ module Apple
 
     # other errors
     BadRequestMethod = Class.new(self)
+    SearchResultError = Class.new(self)
+    QueryError = Class.new(self)
 
     ERRORS = {
       404 => Apple::Error::NotFound
@@ -20,7 +22,12 @@ module Apple
 
     def initialize(message = '', code = nil)
       super(message)
-      @json = JSON.parse(message)
+      @json =
+        begin
+          JSON.parse(message)
+        rescue JSON::ParserError
+          { message: message }
+        end
       @code = code
     end
   end

@@ -32,6 +32,18 @@ module Apple
       Apple
     end
 
+    def find_types
+      {}.freeze
+    end
+
+    def find(adam_type, id, options={})
+      query_method = find_types[adam_type.to_sym]
+
+      raise(Apple::Error::QueryError, "Cant query: #{adam_type}") if query_method.nil?
+
+      send(query_method, id, options)
+    end
+
     protected
 
     def header_fields
