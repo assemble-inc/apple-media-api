@@ -7,7 +7,7 @@ module Apple
 
       def search(term, options={})
         res = perform_get("/v1/catalog/#{get_storefront}/search/", options.merge(term: term))
-        return res unless options.generate_objects && res[:results]
+        return res unless options[:generate_objects] && res[:results]
 
         res[:results].map do |type, hash|
           {
