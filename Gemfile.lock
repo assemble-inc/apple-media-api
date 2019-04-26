@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    apple-media (0.0.1.9)
+    apple-media (0.0.2.0)
       jwt
 
 GEM
