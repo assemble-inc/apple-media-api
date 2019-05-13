@@ -57,16 +57,15 @@ module Apple
           curator.requery
           curator
         end
-
-        def curator_name
-          curator.nil? ? attributes[:curatorName] : curator.name
-        end
-
-        def curator_url
-          curator.nil? ? nil : curator.url
-        end
       end
 
+      def curator_name
+        curator.nil? ? attributes[:curatorName] : curator.name
+      end
+
+      def curator_url
+        curator.nil? ? nil : curator.url
+      end
     end
   end
 end
