@@ -10,7 +10,7 @@ module Apple
         return [] unless res && res[:results]
 
         res[:results].map do |type, charts|
-          return [] if charts.nil?
+          next [] if charts.nil?
 
           charts.map do |chart|
             {
