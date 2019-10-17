@@ -5,9 +5,10 @@ module Apple
     module Search
       include Apple::API::Utils
 
-      def search(term, options={})
+      def search(term, options = {})
+        generate_objects = options.delete :generate_objects
         res = perform_get("/v1/catalog/#{get_storefront}/search/", options.merge(term: term))
-        return res unless options[:generate_objects] && res[:results]
+        return res unless generate_objects && res[:results]
 
         res[:results].map do |type, hash|
           {
