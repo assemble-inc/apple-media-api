@@ -8,7 +8,7 @@ module Apple
       include Apple::Music::API
 
       def url
-        "https://amp-api.music.apple.com/".freeze
+        'https://api.music.apple.com/'.freeze
       end
 
       def base_class
