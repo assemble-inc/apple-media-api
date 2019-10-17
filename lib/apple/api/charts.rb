@@ -17,7 +17,7 @@ module Apple
               chart_name: chart[:name],
               type: type.to_s,
               chart: chart[:chart],
-              adams: generate_objects(type, chart[:data]),
+              adams: generate_objects(type, chart[:data])
             }
           end
         end.flatten

@@ -31,6 +31,7 @@ module Apple
       end
 
       def generate_objects(type, data)
+        return [] if !data
         klass = get_class(type)
         data.map { |adam| klass.new(adam) }
       end
