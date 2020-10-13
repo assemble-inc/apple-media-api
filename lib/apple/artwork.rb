@@ -25,21 +25,21 @@ module Apple
     end
 
     def url(width: nil, height: nil, format: nil, cropping: nil)
-      match = url.match(/(?<width>{w})x(?<height>{h})(?:\.|(?<cropping>.*?)\.)(?<format>[\w{}]+)(?<s>\?|$)(?<query>.+$|$)/)
+      match = @url.match(/(?<width>{w})x(?<height>{h})(?:\.|(?<cropping>.*?)\.)(?<format>[\w{}]+)(?<s>\?|$)(?<query>.+$|$)/)
 
       # cut off the end of the url to be replaced with the final data
-      res = url.gsub(/\{w\}.+$/ , '')
+      res = @url.gsub(/\{w\}.+$/ , '')
 
       format ||= (match[:format] == '{f}') ? 'jpeg' : match[:format]
       cropping ||= (match[:cropping] == '{c}') ? 'bb' : match[:cropping]
 
-      new_width, new_height = self.adjust_sizes(width: width, height: height, cropping: cropping)
+      new_width, new_height = adjust_sizes(width: width, height: height)
 
       "#{res}#{new_width}x#{new_height}#{cropping}.#{format}#{match[:s]}#{match[:query]}"
     end
 
     def adjust_sizes(width: nil, height: nil)
-      if !width.blank? && !height.blank?
+      if !width.nil? && !height.nil?
         [width, height]
       else
         # if you send only one demension scale the other one to the right ratio
